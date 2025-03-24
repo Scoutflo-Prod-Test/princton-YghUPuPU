@@ -1,0 +1,1175 @@
+{
+  "SchemaVersion": 2,
+  "CreatedAt": "2025-03-24T13:09:04.791446328Z",
+  "ArtifactName": "satyamp07/waitlist:latest",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "OS": {
+      "Family": "alpine",
+      "Name": "3.21.2"
+    },
+    "ImageID": "sha256:dd2b48de7afaf037783255667b35f900b79943c773fc3bb9f7a31cb4b3df42bd",
+    "DiffIDs": [
+      "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c",
+      "sha256:d561411347c1cd56280279b2f28678e4045eca1f38039cf2b546c729d39abc27",
+      "sha256:8e0b3f8ca374aea722457504880d2d08efec2db3b4c7f0c2e83d483ea2d93ad5",
+      "sha256:f3778221ab51c3b1950f19f35ee8a008dadf5615d92d3db825cf5ecdae2e8897",
+      "sha256:8315e4a1e4f048a39fbd02ec1474a42a105821d23ad22a408a4eb098a5c33d2c",
+      "sha256:ea997ddfc2f50ef314b3fc9ea1864a0a4a8afe205c70d650e7c8375365777789",
+      "sha256:18d562e6abb1cd0f7e1061aa31a4530035ff30d0b61d06f82cb08924aea62809",
+      "sha256:f592439b628eb18aaa4944f0e39d8b92eb2da313d143fbfd59267881e16c005a",
+      "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9",
+      "sha256:33db25da8ffce9c4478614ffa57d8627bc66a93ad793b3a1f79a6d4ac3603668"
+    ],
+    "RepoTags": [
+      "satyamp07/waitlist:latest"
+    ],
+    "RepoDigests": [
+      "satyamp07/waitlist@sha256:1e0d1ef20660df4cac5b6eedcc08bf7275dc294f307648aca678e1375b1be305"
+    ],
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2025-02-14T12:59:48.841906841Z",
+      "history": [
+        {
+          "created": "2025-01-08T12:07:30Z",
+          "created_by": "ADD alpine-minirootfs-3.21.2-x86_64.tar.gz / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-01-08T12:07:30Z",
+          "created_by": "CMD [\"/bin/sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "ENV NODE_VERSION=18.20.6",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "RUN /bin/sh -c addgroup -g 1000 node     \u0026\u0026 adduser -u 1000 -G node -s /bin/sh -D node     \u0026\u0026 apk add --no-cache         libstdc++     \u0026\u0026 apk add --no-cache --virtual .build-deps         curl     \u0026\u0026 ARCH= OPENSSL_ARCH='linux*' \u0026\u0026 alpineArch=\"$(apk --print-arch)\"       \u0026\u0026 case \"${alpineArch##*-}\" in         x86_64) ARCH='x64' CHECKSUM=\"9919b24d4b9973cdd99c5b630ba3d5adc1b71c8f5471fd7a394539451f7e370e\" OPENSSL_ARCH=linux-x86_64;;         x86) OPENSSL_ARCH=linux-elf;;         aarch64) OPENSSL_ARCH=linux-aarch64;;         arm*) OPENSSL_ARCH=linux-armv4;;         ppc64le) OPENSSL_ARCH=linux-ppc64le;;         s390x) OPENSSL_ARCH=linux-s390x;;         *) ;;       esac   \u0026\u0026 if [ -n \"${CHECKSUM}\" ]; then     set -eu;     curl -fsSLO --compressed \"https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz\";     echo \"$CHECKSUM  node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz\" | sha256sum -c -       \u0026\u0026 tar -xJf \"node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz\" -C /usr/local --strip-components=1 --no-same-owner       \u0026\u0026 ln -s /usr/local/bin/node /usr/local/bin/nodejs;   else     echo \"Building from source\"     \u0026\u0026 apk add --no-cache --virtual .build-deps-full         binutils-gold         g++         gcc         gnupg         libgcc         linux-headers         make         python3         py-setuptools     \u0026\u0026 export GNUPGHOME=\"$(mktemp -d)\"     \u0026\u0026 for key in       C0D6248439F1D5604AAFFB4021D900FFDB233756       DD792F5973C6DE52C432CBDAC77ABFA00DDBF2B7       CC68F5A3106FF448322E48ED27F5E38D5B0A215F       8FCCA13FEF1D0C2E91008E09770F7A9A5AE15600       890C08DB8579162FEE0DF9DB8BEAB4DFCF555EF4       C82FA3AE1CBEDC6BE46B9360C43CEC45C17AB93C       108F52B48DB57BB0CC439B2997B01419BD92F80A       A363A499291CBBC940DD62E41F10027AF002F8B0     ; do       gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys \"$key\" ||       gpg --batch --keyserver keyserver.ubuntu.com --recv-keys \"$key\" ;     done     \u0026\u0026 curl -fsSLO --compressed \"https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz\"     \u0026\u0026 curl -fsSLO --compressed \"https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc\"     \u0026\u0026 gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc     \u0026\u0026 gpgconf --kill all     \u0026\u0026 rm -rf \"$GNUPGHOME\"     \u0026\u0026 grep \" node-v$NODE_VERSION.tar.xz\\$\" SHASUMS256.txt | sha256sum -c -     \u0026\u0026 tar -xf \"node-v$NODE_VERSION.tar.xz\"     \u0026\u0026 cd \"node-v$NODE_VERSION\"     \u0026\u0026 ./configure     \u0026\u0026 make -j$(getconf _NPROCESSORS_ONLN) V=     \u0026\u0026 make install     \u0026\u0026 apk del .build-deps-full     \u0026\u0026 cd ..     \u0026\u0026 rm -Rf \"node-v$NODE_VERSION\"     \u0026\u0026 rm \"node-v$NODE_VERSION.tar.xz\" SHASUMS256.txt.asc SHASUMS256.txt;   fi   \u0026\u0026 rm -f \"node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz\"   \u0026\u0026 find /usr/local/include/node/openssl/archs -mindepth 1 -maxdepth 1 ! -name \"$OPENSSL_ARCH\" -exec rm -rf {} \\;   \u0026\u0026 apk del .build-deps   \u0026\u0026 node --version   \u0026\u0026 npm --version # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "ENV YARN_VERSION=1.22.22",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "RUN /bin/sh -c apk add --no-cache --virtual .build-deps-yarn curl gnupg tar   \u0026\u0026 export GNUPGHOME=\"$(mktemp -d)\"   \u0026\u0026 for key in     6A010C5166006599AA17F08146C2130DFD2497F5   ; do     gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys \"$key\" ||     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys \"$key\" ;   done   \u0026\u0026 curl -fsSLO --compressed \"https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz\"   \u0026\u0026 curl -fsSLO --compressed \"https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc\"   \u0026\u0026 gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz   \u0026\u0026 gpgconf --kill all   \u0026\u0026 rm -rf \"$GNUPGHOME\"   \u0026\u0026 mkdir -p /opt   \u0026\u0026 tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/   \u0026\u0026 ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn   \u0026\u0026 ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg   \u0026\u0026 rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz   \u0026\u0026 apk del .build-deps-yarn   \u0026\u0026 yarn --version   \u0026\u0026 rm -rf /tmp/* # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "COPY docker-entrypoint.sh /usr/local/bin/ # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "ENTRYPOINT [\"docker-entrypoint.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-01-22T06:48:46Z",
+          "created_by": "CMD [\"node\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:53:32.702597583Z",
+          "created_by": "WORKDIR /app",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:53:32.990010542Z",
+          "created_by": "ENV NODE_ENV=production",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:53:32.990010542Z",
+          "created_by": "ENV PORT=3000",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:53:32.990010542Z",
+          "created_by": "ENV NEXT_TELEMETRY_DISABLED=1",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:53:32.990010542Z",
+          "created_by": "RUN /bin/sh -c addgroup --system --gid 1001 nodejs # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:53:33.2247445Z",
+          "created_by": "RUN /bin/sh -c adduser --system --uid 1001 nextjs # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:59:46.229593798Z",
+          "created_by": "COPY /app/public ./public # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:59:48.470964799Z",
+          "created_by": "COPY --chown=nextjs:nodejs /app/.next/standalone ./ # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:59:48.841906841Z",
+          "created_by": "COPY --chown=nextjs:nodejs /app/.next/static ./.next/static # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2025-02-14T12:59:48.841906841Z",
+          "created_by": "USER nextjs",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:59:48.841906841Z",
+          "created_by": "EXPOSE map[3000/tcp:{}]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2025-02-14T12:59:48.841906841Z",
+          "created_by": "CMD [\"node\" \"server.js\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c",
+          "sha256:d561411347c1cd56280279b2f28678e4045eca1f38039cf2b546c729d39abc27",
+          "sha256:8e0b3f8ca374aea722457504880d2d08efec2db3b4c7f0c2e83d483ea2d93ad5",
+          "sha256:f3778221ab51c3b1950f19f35ee8a008dadf5615d92d3db825cf5ecdae2e8897",
+          "sha256:8315e4a1e4f048a39fbd02ec1474a42a105821d23ad22a408a4eb098a5c33d2c",
+          "sha256:ea997ddfc2f50ef314b3fc9ea1864a0a4a8afe205c70d650e7c8375365777789",
+          "sha256:18d562e6abb1cd0f7e1061aa31a4530035ff30d0b61d06f82cb08924aea62809",
+          "sha256:f592439b628eb18aaa4944f0e39d8b92eb2da313d143fbfd59267881e16c005a",
+          "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9",
+          "sha256:33db25da8ffce9c4478614ffa57d8627bc66a93ad793b3a1f79a6d4ac3603668"
+        ]
+      },
+      "config": {
+        "Cmd": [
+          "node",
+          "server.js"
+        ],
+        "Entrypoint": [
+          "docker-entrypoint.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "NODE_VERSION=18.20.6",
+          "YARN_VERSION=1.22.22",
+          "NODE_ENV=production",
+          "PORT=3000",
+          "NEXT_TELEMETRY_DISABLED=1"
+        ],
+        "User": "nextjs",
+        "WorkingDir": "/app",
+        "ExposedPorts": {
+          "3000/tcp": {}
+        },
+        "ArgsEscaped": true
+      }
+    }
+  },
+  "Results": [
+    {
+      "Target": "satyamp07/waitlist:latest (alpine 3.21.2)",
+      "Class": "os-pkgs",
+      "Type": "alpine",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2024-12797",
+          "PkgID": "libcrypto3@3.3.2-r4",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.3.2-r4?arch=x86_64\u0026distro=3.21.2",
+            "UID": "542067a84ab82f32"
+          },
+          "InstalledVersion": "3.3.2-r4",
+          "FixedVersion": "3.3.3-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12797",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "openssl: RFC7250 handshakes with unauthenticated servers don't abort as expected",
+          "Description": "Issue summary: Clients using RFC7250 Raw Public Keys (RPKs) to authenticate a\nserver may fail to notice that the server was not authenticated, because\nhandshakes don't abort as expected when the SSL_VERIFY_PEER verification mode\nis set.\n\nImpact summary: TLS and DTLS connections using raw public keys may be\nvulnerable to man-in-middle attacks when server authentication failure is not\ndetected by clients.\n\nRPKs are disabled by default in both TLS clients and TLS servers.  The issue\nonly arises when TLS clients explicitly enable RPK use by the server, and the\nserver, likewise, enables sending of an RPK instead of an X.509 certificate\nchain.  The affected clients are those that then rely on the handshake to\nfail when the server's RPK fails to match one of the expected public keys,\nby setting the verification mode to SSL_VERIFY_PEER.\n\nClients that enable server-side raw public keys can still find out that raw\npublic key verification failed by calling SSL_get_verify_result(), and those\nthat do, and take appropriate action, are not affected.  This issue was\nintroduced in the initial implementation of RPK support in OpenSSL 3.2.\n\nThe FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-392"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "ghsa": 1,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "ubuntu": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/11/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/11/4",
+            "https://access.redhat.com/errata/RHSA-2025:1330",
+            "https://access.redhat.com/security/cve/CVE-2024-12797",
+            "https://bugzilla.redhat.com/2342757",
+            "https://errata.almalinux.org/9/ALSA-2025-1330.html",
+            "https://github.com/openssl/openssl/commit/738d4f9fdeaad57660dcba50a619fafced3fd5e9",
+            "https://github.com/openssl/openssl/commit/798779d43494549b611233f92652f0da5328fbe7",
+            "https://github.com/openssl/openssl/commit/87ebd203feffcf92ad5889df92f90bb0ee10a699",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-79v4-65xg-pq4g",
+            "https://linux.oracle.com/cve/CVE-2024-12797.html",
+            "https://linux.oracle.com/errata/ELSA-2025-1330.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-12797",
+            "https://openssl-library.org/news/secadv/20250211.txt",
+            "https://security.netapp.com/advisory/ntap-20250214-0001/",
+            "https://ubuntu.com/security/notices/USN-7264-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-12797"
+          ],
+          "PublishedDate": "2025-02-11T16:15:38.827Z",
+          "LastModifiedDate": "2025-02-18T14:15:27.107Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-13176",
+          "PkgID": "libcrypto3@3.3.2-r4",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.3.2-r4?arch=x86_64\u0026distro=3.21.2",
+            "UID": "542067a84ab82f32"
+          },
+          "InstalledVersion": "3.3.2-r4",
+          "FixedVersion": "3.3.2-r5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-13176",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "openssl: Timing side-channel in ECDSA signature computation",
+          "Description": "Issue summary: A timing side-channel which could potentially allow recovering\nthe private key exists in the ECDSA signature computation.\n\nImpact summary: A timing side-channel in ECDSA signature computations\ncould allow recovering the private key by an attacker. However, measuring\nthe timing would require either local access to the signing application or\na very fast network connection with low latency.\n\nThere is a timing signal of around 300 nanoseconds when the top word of\nthe inverted ECDSA nonce value is zero. This can happen with significant\nprobability only for some of the supported elliptic curves. In particular\nthe NIST P-521 curve is affected. To be able to measure this leak, the attacker\nprocess must either be located in the same physical computer or must\nhave a very fast network connection with low latency. For that reason\nthe severity of this vulnerability is Low.\n\nThe FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are affected by this issue.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-385"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 4.7
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/01/20/2",
+            "https://access.redhat.com/security/cve/CVE-2024-13176",
+            "https://github.com/openssl/openssl/commit/07272b05b04836a762b4baa874958af51d513844",
+            "https://github.com/openssl/openssl/commit/2af62e74fb59bc469506bc37eb2990ea408d9467",
+            "https://github.com/openssl/openssl/commit/392dcb336405a0c94486aa6655057f59fd3a0902",
+            "https://github.com/openssl/openssl/commit/4b1cb94a734a7d4ec363ac0a215a25c181e11f65",
+            "https://github.com/openssl/openssl/commit/77c608f4c8857e63e98e66444e2e761c9627916f",
+            "https://github.openssl.org/openssl/extended-releases/commit/0d5fd1ab987f7571e2c955d8d8b638fc0fb54ded",
+            "https://github.openssl.org/openssl/extended-releases/commit/a2639000db19878d5d89586ae7b725080592ae86",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-13176",
+            "https://openssl-library.org/news/secadv/20250120.txt",
+            "https://security.netapp.com/advisory/ntap-20250124-0005/",
+            "https://ubuntu.com/security/notices/USN-7264-1",
+            "https://ubuntu.com/security/notices/USN-7278-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-13176"
+          ],
+          "PublishedDate": "2025-01-20T14:15:26.247Z",
+          "LastModifiedDate": "2025-03-18T08:15:10.2Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-12797",
+          "PkgID": "libssl3@3.3.2-r4",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.3.2-r4?arch=x86_64\u0026distro=3.21.2",
+            "UID": "b53306887f53ea89"
+          },
+          "InstalledVersion": "3.3.2-r4",
+          "FixedVersion": "3.3.3-r0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-12797",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "openssl: RFC7250 handshakes with unauthenticated servers don't abort as expected",
+          "Description": "Issue summary: Clients using RFC7250 Raw Public Keys (RPKs) to authenticate a\nserver may fail to notice that the server was not authenticated, because\nhandshakes don't abort as expected when the SSL_VERIFY_PEER verification mode\nis set.\n\nImpact summary: TLS and DTLS connections using raw public keys may be\nvulnerable to man-in-middle attacks when server authentication failure is not\ndetected by clients.\n\nRPKs are disabled by default in both TLS clients and TLS servers.  The issue\nonly arises when TLS clients explicitly enable RPK use by the server, and the\nserver, likewise, enables sending of an RPK instead of an X.509 certificate\nchain.  The affected clients are those that then rely on the handshake to\nfail when the server's RPK fails to match one of the expected public keys,\nby setting the verification mode to SSL_VERIFY_PEER.\n\nClients that enable server-side raw public keys can still find out that raw\npublic key verification failed by calling SSL_get_verify_result(), and those\nthat do, and take appropriate action, are not affected.  This issue was\nintroduced in the initial implementation of RPK support in OpenSSL 3.2.\n\nThe FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are not affected by this issue.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-392"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "ghsa": 1,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "ubuntu": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/11/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/11/4",
+            "https://access.redhat.com/errata/RHSA-2025:1330",
+            "https://access.redhat.com/security/cve/CVE-2024-12797",
+            "https://bugzilla.redhat.com/2342757",
+            "https://errata.almalinux.org/9/ALSA-2025-1330.html",
+            "https://github.com/openssl/openssl/commit/738d4f9fdeaad57660dcba50a619fafced3fd5e9",
+            "https://github.com/openssl/openssl/commit/798779d43494549b611233f92652f0da5328fbe7",
+            "https://github.com/openssl/openssl/commit/87ebd203feffcf92ad5889df92f90bb0ee10a699",
+            "https://github.com/pyca/cryptography",
+            "https://github.com/pyca/cryptography/security/advisories/GHSA-79v4-65xg-pq4g",
+            "https://linux.oracle.com/cve/CVE-2024-12797.html",
+            "https://linux.oracle.com/errata/ELSA-2025-1330.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-12797",
+            "https://openssl-library.org/news/secadv/20250211.txt",
+            "https://security.netapp.com/advisory/ntap-20250214-0001/",
+            "https://ubuntu.com/security/notices/USN-7264-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-12797"
+          ],
+          "PublishedDate": "2025-02-11T16:15:38.827Z",
+          "LastModifiedDate": "2025-02-18T14:15:27.107Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-13176",
+          "PkgID": "libssl3@3.3.2-r4",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.3.2-r4?arch=x86_64\u0026distro=3.21.2",
+            "UID": "b53306887f53ea89"
+          },
+          "InstalledVersion": "3.3.2-r4",
+          "FixedVersion": "3.3.2-r5",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-13176",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "openssl: Timing side-channel in ECDSA signature computation",
+          "Description": "Issue summary: A timing side-channel which could potentially allow recovering\nthe private key exists in the ECDSA signature computation.\n\nImpact summary: A timing side-channel in ECDSA signature computations\ncould allow recovering the private key by an attacker. However, measuring\nthe timing would require either local access to the signing application or\na very fast network connection with low latency.\n\nThere is a timing signal of around 300 nanoseconds when the top word of\nthe inverted ECDSA nonce value is zero. This can happen with significant\nprobability only for some of the supported elliptic curves. In particular\nthe NIST P-521 curve is affected. To be able to measure this leak, the attacker\nprocess must either be located in the same physical computer or must\nhave a very fast network connection with low latency. For that reason\nthe severity of this vulnerability is Low.\n\nThe FIPS modules in 3.4, 3.3, 3.2, 3.1 and 3.0 are affected by this issue.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-385"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 2,
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 4.7
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/01/20/2",
+            "https://access.redhat.com/security/cve/CVE-2024-13176",
+            "https://github.com/openssl/openssl/commit/07272b05b04836a762b4baa874958af51d513844",
+            "https://github.com/openssl/openssl/commit/2af62e74fb59bc469506bc37eb2990ea408d9467",
+            "https://github.com/openssl/openssl/commit/392dcb336405a0c94486aa6655057f59fd3a0902",
+            "https://github.com/openssl/openssl/commit/4b1cb94a734a7d4ec363ac0a215a25c181e11f65",
+            "https://github.com/openssl/openssl/commit/77c608f4c8857e63e98e66444e2e761c9627916f",
+            "https://github.openssl.org/openssl/extended-releases/commit/0d5fd1ab987f7571e2c955d8d8b638fc0fb54ded",
+            "https://github.openssl.org/openssl/extended-releases/commit/a2639000db19878d5d89586ae7b725080592ae86",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-13176",
+            "https://openssl-library.org/news/secadv/20250120.txt",
+            "https://security.netapp.com/advisory/ntap-20250124-0005/",
+            "https://ubuntu.com/security/notices/USN-7264-1",
+            "https://ubuntu.com/security/notices/USN-7278-1",
+            "https://www.cve.org/CVERecord?id=CVE-2024-13176"
+          ],
+          "PublishedDate": "2025-01-20T14:15:26.247Z",
+          "LastModifiedDate": "2025-03-18T08:15:10.2Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-26519",
+          "PkgID": "musl@1.2.5-r8",
+          "PkgName": "musl",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/musl@1.2.5-r8?arch=x86_64\u0026distro=3.21.2",
+            "UID": "936f1fd92822db90"
+          },
+          "InstalledVersion": "1.2.5-r8",
+          "FixedVersion": "1.2.5-r9",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-26519",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write ...",
+          "Description": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write vulnerability when an attacker can trigger iconv conversion of untrusted EUC-KR text to UTF-8.",
+          "Severity": "UNKNOWN",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/13/2",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/4",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/6",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=c47ad25ea3b484e10326f933e927c0bc8cded3da",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=e5adcd97b5196e29991b524237381a0202a60659",
+            "https://www.openwall.com/lists/oss-security/2025/02/13/2"
+          ],
+          "PublishedDate": "2025-02-14T04:15:09.05Z",
+          "LastModifiedDate": "2025-02-14T17:15:23.09Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-26519",
+          "PkgID": "musl-utils@1.2.5-r8",
+          "PkgName": "musl-utils",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/musl-utils@1.2.5-r8?arch=x86_64\u0026distro=3.21.2",
+            "UID": "f25fd050ed07b9ad"
+          },
+          "InstalledVersion": "1.2.5-r8",
+          "FixedVersion": "1.2.5-r9",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:1f3e46996e2966e4faa5846e56e76e3748b7315e2ded61476c24403d592134f0",
+            "DiffID": "sha256:a0904247e36a7726c03c71ee48f3e64462021c88dafeb13f37fdaf613b27f11c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-26519",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Title": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write ...",
+          "Description": "musl libc 0.9.13 through 1.2.5 before 1.2.6 has an out-of-bounds write vulnerability when an attacker can trigger iconv conversion of untrusted EUC-KR text to UTF-8.",
+          "Severity": "UNKNOWN",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/02/13/2",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/3",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/4",
+            "http://www.openwall.com/lists/oss-security/2025/02/13/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/5",
+            "http://www.openwall.com/lists/oss-security/2025/02/14/6",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=c47ad25ea3b484e10326f933e927c0bc8cded3da",
+            "https://git.musl-libc.org/cgit/musl/commit/?id=e5adcd97b5196e29991b524237381a0202a60659",
+            "https://www.openwall.com/lists/oss-security/2025/02/13/2"
+          ],
+          "PublishedDate": "2025-02-14T04:15:09.05Z",
+          "LastModifiedDate": "2025-02-14T17:15:23.09Z"
+        }
+      ]
+    },
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2025-27152",
+          "PkgID": "axios@1.7.9",
+          "PkgName": "axios",
+          "PkgPath": "app/node_modules/axios/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/axios@1.7.9",
+            "UID": "f95c609744874a92"
+          },
+          "InstalledVersion": "1.7.9",
+          "FixedVersion": "1.8.2",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-27152",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "axios: Possible SSRF and Credential Leakage via Absolute URL in axios Requests",
+          "Description": "axios is a promise based HTTP client for the browser and node.js. The issue occurs when passing absolute URLs rather than protocol-relative URLs to axios. Even if ⁠baseURL is set, axios sends the request to the specified absolute URL, potentially causing SSRF and credential leakage. This issue impacts both server-side and client-side usage of axios. This issue is fixed in 1.8.2.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2025-27152",
+            "https://github.com/axios/axios",
+            "https://github.com/axios/axios/commit/fb8eec214ce7744b5ca787f2c3b8339b2f54b00f",
+            "https://github.com/axios/axios/issues/6463",
+            "https://github.com/axios/axios/releases/tag/v1.8.2",
+            "https://github.com/axios/axios/security/advisories/GHSA-jr5f-v2jv-69x6",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-27152",
+            "https://www.cve.org/CVERecord?id=CVE-2025-27152"
+          ],
+          "PublishedDate": "2025-03-07T16:15:38.773Z",
+          "LastModifiedDate": "2025-03-07T20:15:38.56Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-21538",
+          "PkgID": "cross-spawn@7.0.3",
+          "PkgName": "cross-spawn",
+          "PkgPath": "usr/local/lib/node_modules/npm/node_modules/cross-spawn/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/cross-spawn@7.0.3",
+            "UID": "480da04347e2e299"
+          },
+          "InstalledVersion": "7.0.3",
+          "FixedVersion": "7.0.5, 6.0.6",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:37892ffbfcaa871a10f813803949d18c3015a482051d51b7e0da02525e63167c",
+            "DiffID": "sha256:d561411347c1cd56280279b2f28678e4045eca1f38039cf2b546c729d39abc27"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21538",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "cross-spawn: regular expression denial of service",
+          "Description": "Versions of the package cross-spawn before 7.0.5 are vulnerable to Regular Expression Denial of Service (ReDoS) due to improper input sanitization. An attacker can increase the CPU usage and crash the program by crafting a very large and well crafted string.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 3,
+            "cbl-mariner": 3,
+            "ghsa": 3,
+            "redhat": 1
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H",
+              "V3Score": 4.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-21538",
+            "https://github.com/moxystudio/node-cross-spawn",
+            "https://github.com/moxystudio/node-cross-spawn/commit/5ff3a07d9add449021d806e45c4168203aa833ff",
+            "https://github.com/moxystudio/node-cross-spawn/commit/640d391fde65388548601d95abedccc12943374f",
+            "https://github.com/moxystudio/node-cross-spawn/commit/d35c865b877d2f9ded7c1ed87521c2fdb689c8dd",
+            "https://github.com/moxystudio/node-cross-spawn/issues/165",
+            "https://github.com/moxystudio/node-cross-spawn/pull/160",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-21538",
+            "https://security.snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-8366349",
+            "https://security.snyk.io/vuln/SNYK-JS-CROSSSPAWN-8303230",
+            "https://www.cve.org/CVERecord?id=CVE-2024-21538"
+          ],
+          "PublishedDate": "2024-11-08T05:15:06.453Z",
+          "LastModifiedDate": "2024-11-19T14:15:17.627Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2025-29927",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "14.2.25, 15.2.3",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-29927",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Authorization Bypass in Next.js Middleware",
+          "Description": "Next.js is a React framework for building full-stack web applications. Prior to 14.2.25 and 15.2.3, it is possible to bypass authorization checks within a Next.js application, if the authorization check occurs in middleware. If patching to a safe version is infeasible, it is recommend that you prevent external user requests which contain the x-middleware-subrequest header from reaching your Next.js application. This vulnerability is fixed in 14.2.25 and 15.2.3.",
+          "Severity": "CRITICAL",
+          "CweIDs": [
+            "CWE-285"
+          ],
+          "VendorSeverity": {
+            "ghsa": 4
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 9.1
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2025/03/23/3",
+            "http://www.openwall.com/lists/oss-security/2025/03/23/4",
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/52a078da3884efe6501613c7834a3d02a91676d2",
+            "https://github.com/vercel/next.js/commit/5fd3ae8f8542677c6294f32d18022731eab6fe48",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-f82v-jwr5-mffw",
+            "https://nvd.nist.gov/vuln/detail/CVE-2025-29927"
+          ],
+          "PublishedDate": "2025-03-21T15:15:42.66Z",
+          "LastModifiedDate": "2025-03-23T22:15:13.217Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-34350",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "13.5.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-34350",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Next.js Vulnerable to HTTP Request Smuggling",
+          "Description": "Next.js is a React framework that can provide building blocks to create web applications. Prior to 13.5.1, an inconsistent interpretation of a crafted HTTP request meant that requests are treated as both a single request, and two separate requests by Next.js, leading to desynchronized responses. This led to a response queue poisoning vulnerability in the affected Next.js versions. For a request to be exploitable, the affected route also had to be making use of the [rewrites](https://nextjs.org/docs/app/api-reference/next-config-js/rewrites) feature in Next.js. The vulnerability is resolved in Next.js `13.5.1` and newer.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-444"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/44eba020c615f0d9efe431f84ada67b81576f3f5",
+            "https://github.com/vercel/next.js/compare/v13.5.0...v13.5.1",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-77r5-gw3j-2mpf",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-34350"
+          ],
+          "PublishedDate": "2024-05-14T15:38:41.89Z",
+          "LastModifiedDate": "2024-11-21T09:18:29.013Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-34351",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "14.1.1",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-34351",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Next.js Server-Side Request Forgery in Server Actions",
+          "Description": "Next.js is a React framework that can provide building blocks to create web applications. A Server-Side Request Forgery (SSRF) vulnerability was identified in Next.js Server Actions. If the `Host` header is modified, and the below conditions are also met, an attacker may be able to make requests that appear to be originating from the Next.js application server itself. The required conditions are 1) Next.js is running in a self-hosted manner; 2) the Next.js application makes use of Server Actions; and 3) the Server Action performs a redirect to a relative path which starts with a `/`. This vulnerability was fixed in Next.js `14.1.1`.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/8f7a6ca7d21a97bc9f7a1bbe10427b5ad74b9085",
+            "https://github.com/vercel/next.js/pull/62561",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-fr5h-rqp8-mj6g",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-34351"
+          ],
+          "PublishedDate": "2024-05-14T15:38:42.563Z",
+          "LastModifiedDate": "2024-11-21T09:18:29.133Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-39693",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "13.5.0",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-39693",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Next.js Denial of Service (DoS) condition",
+          "Description": "Next.js is a React framework. A Denial of Service (DoS) condition was identified in Next.js. Exploitation of the bug can trigger a crash, affecting the availability of the server. his vulnerability was resolved in Next.js 13.5 and later.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-fq54-2j52-jc42",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-39693"
+          ],
+          "PublishedDate": "2024-07-10T20:15:04.543Z",
+          "LastModifiedDate": "2024-11-21T09:28:14.067Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-51479",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "14.2.15",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-51479",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "next.js: next: authorization bypass in Next.js",
+          "Description": "Next.js is a React framework for building full-stack web applications. In affected versions if a Next.js application is performing authorization in middleware based on pathname, it was possible for this authorization to be bypassed for pages directly under the application's root directory. For example: * [Not affected] `https://example.com/` * [Affected] `https://example.com/foo` * [Not affected] `https://example.com/foo/bar`. This issue is patched in Next.js `14.2.15` and later. If your Next.js application is hosted on Vercel, this vulnerability has been automatically mitigated, regardless of Next.js version. There are no official workarounds for this vulnerability.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-285"
+          ],
+          "VendorSeverity": {
+            "ghsa": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-51479",
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/1c8234eb20bc8afd396b89999a00f06b61d72d7b",
+            "https://github.com/vercel/next.js/releases/tag/v14.2.15",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-7gfc-8cq8-jh5f",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-51479",
+            "https://www.cve.org/CVERecord?id=CVE-2024-51479"
+          ],
+          "PublishedDate": "2024-12-17T19:15:06.697Z",
+          "LastModifiedDate": "2024-12-17T19:15:06.697Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-47831",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "14.2.7",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-47831",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "next.js: Next.js image optimization has Denial of Service condition",
+          "Description": "Next.js is a React Framework for the Web. Cersions on the 10.x, 11.x, 12.x, 13.x, and 14.x branches before version 14.2.7 contain a vulnerability in the image optimization feature which allows for a potential Denial of Service (DoS) condition which could lead to excessive CPU consumption. Neither the `next.config.js` file that is configured with `images.unoptimized` set to `true` or `images.loader` set to a non-default value nor the Next.js application that is hosted on Vercel are affected. This issue was fully patched in Next.js `14.2.7`. As a workaround, ensure that the `next.config.js` file has either `images.unoptimized`, `images.loader` or `images.loaderFile` assigned.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-674"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-47831",
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/d11cbc9ff0b1aaefabcba9afe1e562e0b1fde65a",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-g77x-44xx-532m",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-47831",
+            "https://www.cve.org/CVERecord?id=CVE-2024-47831"
+          ],
+          "PublishedDate": "2024-10-14T18:15:05.013Z",
+          "LastModifiedDate": "2024-11-08T15:39:21.823Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2024-56332",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "13.5.8, 14.2.21, 15.1.2",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-56332",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "next.js: Next.js Vulnerable to Denial of Service (DoS) with Server Actions",
+          "Description": "Next.js is a React framework for building full-stack web applications. Starting in version 13.0.0 and prior to versions 13.5.8, 14.2.21, and 15.1.2, Next.js is vulnerable to a Denial of Service (DoS) attack that allows attackers to construct requests that leaves requests to Server Actions hanging until the hosting provider cancels the function execution. This vulnerability can also be used as a Denial of Wallet (DoW) attack when deployed in providers billing by response times. (Note: Next.js server is idle during that time and only keeps the connection open. CPU and memory footprint are low during that time.). Deployments without any protection against long running Server Action invocations are especially vulnerable. Hosting providers like Vercel or Netlify set a default maximum duration on function execution to reduce the risk of excessive billing. This is the same issue as if the incoming HTTP request has an invalid `Content-Length` header or never closes. If the host has no other mitigations to those then this vulnerability is novel. This vulnerability affects only Next.js deployments using Server Actions. The issue was resolved in Next.js 13.5.8, 14.2.21, and 15.1.2. We recommend that users upgrade to a safe version. There are no official workarounds.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2024-56332",
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/security/advisories/GHSA-7m27-7ghc-44w9",
+            "https://nvd.nist.gov/vuln/detail/CVE-2024-56332",
+            "https://www.cve.org/CVERecord?id=CVE-2024-56332"
+          ],
+          "PublishedDate": "2025-01-03T21:15:13.55Z",
+          "LastModifiedDate": "2025-01-03T21:15:13.55Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-46298",
+          "PkgID": "next@13.4.2",
+          "PkgName": "next",
+          "PkgPath": "app/node_modules/next/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/next@13.4.2",
+            "UID": "7f4782cb261aa038"
+          },
+          "InstalledVersion": "13.4.2",
+          "FixedVersion": "13.4.20-canary.13",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-46298",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Next.js missing cache-control header may lead to CDN caching empty reply",
+          "Description": "Next.js before 13.4.20-canary.13 lacks a cache-control header and thus empty prefetch responses may sometimes be cached by a CDN, causing a denial of service to all users requesting the same URL via that CDN.",
+          "Severity": "LOW",
+          "VendorSeverity": {
+            "ghsa": 1,
+            "nvd": 3
+          },
+          "CVSS": {
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://github.com/vercel/next.js",
+            "https://github.com/vercel/next.js/commit/20d05958ff853e9c9e42139ffec294336881c648",
+            "https://github.com/vercel/next.js/compare/v13.4.20-canary.12...v13.4.20-canary.13",
+            "https://github.com/vercel/next.js/issues/45301",
+            "https://github.com/vercel/next.js/pull/54732",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-46298"
+          ],
+          "PublishedDate": "2023-10-22T03:15:07.63Z",
+          "LastModifiedDate": "2024-11-21T08:28:15.22Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-44270",
+          "PkgID": "postcss@8.4.14",
+          "PkgName": "postcss",
+          "PkgPath": "app/node_modules/next/node_modules/postcss/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/postcss@8.4.14",
+            "UID": "b22090b19b48959f"
+          },
+          "InstalledVersion": "8.4.14",
+          "FixedVersion": "8.4.31",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-44270",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "PostCSS: Improper input validation in PostCSS",
+          "Description": "An issue was discovered in PostCSS before 8.4.31. The vulnerability affects linters using PostCSS to parse external untrusted CSS. An attacker can prepare CSS in such a way that it will contains parts parsed by PostCSS as a CSS comment. After processing by PostCSS, it will be included in the PostCSS output in CSS nodes (rules, properties) despite being included in a comment.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-74"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2023-44270",
+            "https://github.com/github/advisory-database/issues/2820",
+            "https://github.com/postcss/postcss",
+            "https://github.com/postcss/postcss/blob/main/lib/tokenize.js#L25",
+            "https://github.com/postcss/postcss/commit/58cc860b4c1707510c9cd1bc1fa30b423a9ad6c5",
+            "https://github.com/postcss/postcss/releases/tag/8.4.31",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-44270",
+            "https://www.cve.org/CVERecord?id=CVE-2023-44270"
+          ],
+          "PublishedDate": "2023-09-29T22:15:11.867Z",
+          "LastModifiedDate": "2024-11-21T08:25:33.443Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-4316",
+          "PkgID": "zod@3.21.4",
+          "PkgName": "zod",
+          "PkgPath": "app/node_modules/next/node_modules/zod/package.json",
+          "PkgIdentifier": {
+            "PURL": "pkg:npm/zod@3.21.4",
+            "UID": "a2d7d37cc20f7acd"
+          },
+          "InstalledVersion": "3.21.4",
+          "FixedVersion": "3.22.3",
+          "Status": "fixed",
+          "Layer": {
+            "Digest": "sha256:13a5b6dcd9f9052c4aa533760fecce52cf48ca2ccdca5d743d55e46f7b577b13",
+            "DiffID": "sha256:8571beca5b437478f624c2fc2d73d14fa9aa86ba9cc48198dd8f06cd812559c9"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-4316",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory npm",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+          },
+          "Title": "Zod denial of service vulnerability",
+          "Description": "Zod in versions 3.21.0 up to and including 3.22.3 allows an attacker to perform a denial of service while validating emails.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-1333"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "nvd": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "nvd": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://fluidattacks.com/advisories/swift",
+            "https://github.com/colinhacks/zod",
+            "https://github.com/colinhacks/zod/commit/2ba00fe2377f4d53947a84b8cdb314a63bbd6dd4",
+            "https://github.com/colinhacks/zod/issues/2609",
+            "https://github.com/colinhacks/zod/pull/2824",
+            "https://github.com/colinhacks/zod/releases/tag/v3.22.3",
+            "https://nvd.nist.gov/vuln/detail/CVE-2023-4316",
+            "https://www.npmjs.com/package/zod"
+          ],
+          "PublishedDate": "2023-09-28T21:15:10.313Z",
+          "LastModifiedDate": "2024-11-21T08:34:50.513Z"
+        }
+      ]
+    }
+  ]
+}
